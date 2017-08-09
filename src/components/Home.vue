@@ -1,5 +1,5 @@
 <template>
-    <div class="container content">
+    <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-6 info">
                 <div class="row info-header">
@@ -22,7 +22,7 @@
                     <form class="form" role="form">
                         <div class="row">
                             <div class="form-group col-sm-12 col-md-12 col-lg-6">
-                                <input type="text" class="form-control" placeholder="Login" style="width: 100%;">
+                                <input type="text" class="form-control" placeholder="Login">
                             </div>
                             <div class="form-group col-sm-12 col-md-12 col-lg-6">
                                 <input type="email" class="form-control" placeholder="Email">
@@ -42,19 +42,19 @@
                 </div>
                 <div class="visible-xs hidden-sm hidden-md hidden-lg registration-xs">
                     <div class="xs-registration-content">
-                        <h1><router-link to="Registration">Zarejestruj się</router-link></h1>
+                        <h1><router-link to="register">Zarejestruj się</router-link></h1>
                         <p>lub</p>
-                        <h2><router-link to="Login">zaloguj się</router-link></h2>
+                        <h2><router-link to="login">zaloguj się</router-link></h2>
                     </div>
                 </div>
-            </div> <!-- .registration -->
+            </div>
         </div> <!-- .row -->
-    </div> <!-- .content -->
+    </div> <!-- .container -->
 </template>
 
 <script>
 export default {
-    name: 'home',
+    name: 'Home',
     data () {
         return {
             msg: 'Pytacz.pl Home Page'
@@ -64,12 +64,6 @@ export default {
 </script>
 
 <style>
-    .content {
-        padding-top: 100px;
-    }
-    .first-section > div {
-
-    }
     .info {
         min-height: 300px;
     }
@@ -99,6 +93,7 @@ export default {
         margin-top: 2rem;
     }
     .registration {
+        padding: 15px;
         background: #ffffff;
         border-radius: 10px;
         min-height: 300px;
