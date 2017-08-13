@@ -6,15 +6,15 @@
         <form class="form" role="form">
             <div class="row">
                 <div class="form-group col-md-12">
-                    <input type="text" class="form-control" placeholder="Login">
+                    <input type="text" class="form-control" placeholder="Login" v-model="form.username">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <input type="password" class="form-control" placeholder="Hasło">
+                    <input type="password" class="form-control" placeholder="Hasło" v-model="form.password">
                 </div>
             </div>
-            <button type="submit" class="btn login-button">Zaloguj się</button>
+            <button type="button" class="btn login-button" @click="sendForm">Zaloguj się</button>
         </form>
         <p>
             <router-link to="/register">Nie mam konta</router-link>
@@ -23,7 +23,28 @@
 </template>
 <script>
     export default {
-        name: 'Login'
+        name: 'Login',
+        data() {
+            return {
+                form: {
+                    username: '',
+                    password: ''
+                }
+            }
+        },
+        methods: {
+            sendForm() {
+                this.$http.post('http://localhost/api.php', this.form) // url for tests
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result['success'] === true) {
+                          alert('ok');
+                        } else {
+                          alert('error');
+                        }
+                    });
+            }
+        }
     }
 </script>
 <style scoped>
