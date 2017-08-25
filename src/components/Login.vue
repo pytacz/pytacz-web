@@ -34,15 +34,9 @@
         },
         methods: {
             sendForm() {
-                this.$http.post('http://localhost/api.php', this.form) // url for tests
-                    .then(response => response.json())
-                    .then(result => {
-                        if (result['success'] === true) {
-                          alert('ok');
-                        } else {
-                          alert('error');
-                        }
-                    });
+                this.$auth.login({
+                    data: {username: 'test', password: 'test'}
+                });
             }
         }
     }
