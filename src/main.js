@@ -5,7 +5,6 @@ import vueResource from 'vue-resource'
 
 Vue.config.productionTip = false;
 Vue.use(vueResource);
-Vue.http.headers.common['Access-Control-Allow-Origin'] = '*';
 Vue.http.options.root = 'http://api.pytacz.local/';
 Vue.http.options.emulateJSON = true;
 

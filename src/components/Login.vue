@@ -6,12 +6,12 @@
         <form class="form" role="form">
             <div class="row">
                 <div class="form-group col-md-12">
-                    <input type="text" class="form-control" placeholder="Login" v-model="form.username">
+                    <input type="text" class="form-control" placeholder="Login" v-model="form._username">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <input type="password" class="form-control" placeholder="Hasło" v-model="form.password">
+                    <input type="password" class="form-control" placeholder="Hasło" v-model="form._password">
                 </div>
             </div>
             <button type="button" class="btn login-button" @click="sendForm">Zaloguj się</button>
@@ -27,15 +27,15 @@
         data() {
             return {
                 form: {
-                    username: '',
-                    password: ''
+                    _username: '',
+                    _password: ''
                 }
             }
         },
         methods: {
             sendForm() {
                 this.$auth.login({
-                    data: {username: 'test', password: 'test'}
+                    body: this.form
                 });
             }
         }
