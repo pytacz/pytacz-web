@@ -1,0 +1,27 @@
+@media (min-width: 992px) {
+    .wrapper > * {
+        margin-left: 20px;
+    }
+}
+@media (max-width: 992px) {
+    .wrapper > * {
+        margin-top: 20px;
+    }
+}
+.sidebar-nav-fixed {
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 2px 3px rgba(0,0,0,.3);
+    border-radius: 2px;
+}
+.content {
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 2px 3px rgba(0,0,0,.3);
+    border-radius: 2px;
+    min-height: 550px;
+}
+.sidebar-nav-left {
+    min-height: 400px;
+}
+.sidebar-nav-right {
+    min-height: 200px;
+}

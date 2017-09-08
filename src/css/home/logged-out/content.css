@@ -1,0 +1,47 @@
+.info {
+    min-height: 300px;
+}
+.info-header {
+    height: 20%;
+}
+.info-header h1 {
+    margin-left: 2rem;
+    color: #ff6100;
+}
+.info-content {
+    height: 80%;
+    font-size: 2rem;
+}
+.spacer {
+    margin: 1rem 2rem;
+}
+.register-button {
+    color: #2e4148;
+    font-size: 2rem;
+    font-weight: bold;
+    height: 40px;
+    background: #f68827;
+    width: 100%;
+}
+form > * {
+    margin-top: 2rem;
+}
+.registration {
+    padding: 15px;
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+    border-radius: 4px;
+    min-height: 300px;
+}
+.registration-xs {
+    min-height: 125px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+    background: #ffffff;
+    border-radius: 4px;
+}
+.xs-registration-content {
+    text-align: center;
+}
+.xs-registration-content * {
+    margin-top: 0px;
+}

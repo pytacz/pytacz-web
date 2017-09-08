@@ -1,0 +1,33 @@
+.fade-enter-active {
+    transition: opacity .5s;
+}
+.fade-enter {
+    opacity: 0;
+}
+main {
+    padding-top: 100px;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    background: #f1f1f1;
+    font-family: merriweather-light;
+    margin-bottom: 60px;
+}
+.form-control:focus {
+    border-color: #ff6100;
+    box-shadow: inset 0 1px 1px #ff6100, 0 0 8px #ff6100;
+}
+.pusher {
+    height: 50px;
+}
+.form-control-error, .form-control-error:focus {
+    border-color: #c91b25;
+    box-shadow: inset 0 1px 1px #d13734, 0 0 4px #d13734;
+}
+.post-errors {
+    font-weight: bold;
+    color: #c91b25;
+}
