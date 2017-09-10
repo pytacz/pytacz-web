@@ -1,0 +1,23 @@
+.registration-header {
+    text-align: center;
+}
+.register-button {
+    margin-top: 2rem;
+    color: #2e4148;
+    font-size: 2rem;
+    font-weight: bold;
+    height: 40px;
+    background: #f68827;
+    width: 100%;
+}
+form {
+    margin-top: 3rem;
+}
+p {
+    margin-top: 2rem;
+    text-align: center;
+}
+.pre-error {
+    color: #c91b25;
+    font-weight: bold;
+}

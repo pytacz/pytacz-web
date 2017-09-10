@@ -1,0 +1,20 @@
+.login-error {
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 15px;
+}
+#loginPopupWindow {
+    margin-top: 5rem;
+}
+.pop-up-login button {
+    color: #2e4148;
+    font-weight: bold;
+    height: 40px;
+    background: #f68827;
+}
+.pop-up-login .pop-up-login-footer {
+    margin-right: 0.4rem;
+}
+label[for=rememberMe] {
+    font-weight: normal;
+}
