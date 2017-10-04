@@ -14,10 +14,11 @@
     border-radius: 2px;
 }
 .content {
+    position: relative;
     background: #ffffff;
     box-shadow: 0 0 0 1px rgba(0,0,0,.2), 0 2px 3px rgba(0,0,0,.3);
     border-radius: 2px;
-    min-height: 550px;
+    min-height: 450px;
 }
 .sidebar-nav-left {
     min-height: 400px;

@@ -9,7 +9,18 @@ export default new Router({
         {
             path: '/',
             name: 'Home',
-            component: require('@/components/Home')
+            component: require('@/components/Home'),
+            children: [
+                {
+                    path: '',
+                    name: 'Main',
+                    component: require('@/components/content/Main')
+                }, {
+                    path: '/notebook/:id',
+                    name: 'Notebook',
+                    component: require('@/components/content/Notebook')
+                }
+            ]
         }, {
             path: '/register',
             name: 'Register',
@@ -20,6 +31,10 @@ export default new Router({
             name: 'Login',
             component: require('@/components/user/Login'),
             meta: {auth: false}
-        },
+        }, {
+            path: '*',
+            name: '404',
+            component: require('@/components/status/404')
+        }
     ]
 });

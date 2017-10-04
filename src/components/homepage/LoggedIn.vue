@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-xs-10 col-xs-offset-1 col-md-6 content">
-
+                <router-view style="width: 100%;"></router-view>
             </div>
             <div class="hidden-sm visible-md visible-lg col-md-2 sidebar-nav-fixed sidebar-nav-right">
 

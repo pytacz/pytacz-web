@@ -1,0 +1,17 @@
+.modal-body button {
+    background: #f68827;
+}
+.form-label {
+    font-weight: bold;
+    text-align: center;
+}
+.form-label {
+    font-weight: bold;
+}
+.notebook-delete {
+    margin-top: 20px;
+    text-align: center;
+}
+.delete-confirmation {
+    display: none;
+}
