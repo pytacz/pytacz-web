@@ -1,0 +1,85 @@
+.note-addition {
+    display: none;
+    background: #f1f1f1;
+    margin-top: 20px;
+}
+.note-addition button {
+    background: #f68827;
+}
+.note-name, .note-content {
+    word-wrap: break-word;
+}
+.edit-note-content {
+    outline: none;
+    resize: none;
+    overflow: hidden;
+}
+.remaining-characters {
+    float: right;
+    text-align: right;
+    color: #8c8c8c;
+    font-size: small;
+}
+.notes-list {
+    margin-top: 30px;
+}
+.notes-list .note {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    min-height: 50px;
+    border-top: 1px solid #eeeeee;
+}
+.notes-list .note:nth-child(6n) {
+    border-top: 1px dashed #cbcbcb;
+}
+.note {
+    position: relative;
+}
+.note-edition {
+    display: none;
+    margin-top: 10px;
+}
+.note-edition-form input, .note-addition-form input, .sub-note-addition-form input, .sub-note-edition-form input {
+    outline: none;
+}
+.note-edition-form input[name=editName], .sub-note-edition-form input[name=editSubNoteName] {
+    font-weight: bold;
+}
+.note-container, .note-edition {
+    margin-top: 21px;
+}
+.sub-note-addition {
+    display: none;
+    margin-top: 15px;
+}
+.bullet-point {
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+@media (max-width: 767px) {
+    textarea {
+        background: #f1f1f1;
+    }
+    textarea[name=addSubNoteContent] {
+        float: right;
+    }
+}
+@media (min-width: 767px) {
+    .edit-note-content {
+        margin-left: 0;
+    }
+}
+.sub-note {
+    clear: both;
+    margin-top: 10px;
+    min-height: 40px;
+    position: relative;
+}
+.sub-note-edition {
+    display: none;
+    margin-top: 20px;
+}

@@ -1,0 +1,94 @@
+/*note edition (pencil)*/
+.display-edition-icon {
+    width: 15px;
+    height: 15px;
+    opacity: 0.4;
+}
+.display-edition:hover .display-edition-icon {
+    opacity: 1;
+}
+.display-edition {
+    top: 0;
+    right: 0;
+    position: absolute;
+    display: none;
+}
+.note:hover .display-edition {
+    display: block;
+}
+
+/*delete note (trash can)*/
+.delete-note-icon {
+    width: 15px;
+    height: 15px;
+    opacity: 0.4;
+}
+.delete-note:hover .delete-note-icon {
+    opacity: 1;
+}
+.delete-note {
+    top: 0;
+    right: 25px;
+    position: absolute;
+    display: none;
+}
+.note:hover .delete-note {
+    display: block;
+}
+
+/*subnote addition (plus)*/
+.add-sub-note-icon {
+    width: 12px;
+    height: 12px;
+    opacity: 0.4;
+}
+.display-sub-note-addition:hover .add-sub-note-icon {
+    opacity: 1;
+}
+.display-sub-note-addition {
+    top: 0;
+    right: 50px;
+    position: absolute;
+    display: none;
+}
+.note:hover .display-sub-note-addition {
+    display: block;
+}
+
+/*delete sub note (trash can)*/
+.delete-sub-note-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.4;
+}
+.delete-sub-note:hover .delete-sub-note-icon {
+    opacity: 1;
+}
+.delete-sub-note {
+    top: 0;
+    right: 20px;
+    position: absolute;
+    display: none;
+}
+.sub-note:hover .delete-sub-note {
+    display: block;
+}
+
+/*edit sub note (pencil)*/
+.display-sub-note-edition-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.4;
+}
+.display-sub-note-edition:hover .display-sub-note-edition-icon {
+    opacity: 1;
+}
+.display-sub-note-edition {
+    top: 0;
+    right: 0;
+    position: absolute;
+    display: none;
+}
+.sub-note:hover .display-sub-note-edition {
+    display: block;
+}

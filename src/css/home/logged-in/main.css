@@ -1,0 +1,45 @@
+.empty-notebooks {
+    color: #8c8c8c;
+    text-align: center;
+    margin-top: 30px;
+}
+.segment-label {
+    text-align: center;
+    background: #2e4148;
+    color: #ffffff;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.note-list-content {
+    margin-top: 20px;
+    min-height: 200px;
+    border-bottom: 1px solid #c7c7c7;
+}
+.note-list-content li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@media (max-width: 767px) {
+    .note-list-content li {
+        text-align: center;
+    }
+}
+.expand-menu {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    cursor: pointer;
+}
+.expand-menu li {
+    text-align: center;
+    color: black;
+}
+.menu-icon {
+    position: relative;
+    background: url('../../../assets/icons/arrow.svg');
+    background-size: 25px 20px;
+    width: 20px;
+    height: 20px;
+}

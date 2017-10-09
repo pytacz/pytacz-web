@@ -1,0 +1,44 @@
+.notebook-container {
+    position: relative;
+}
+.notebook-header {
+    min-height: 60px;
+    background: #2e4148;
+    color: #ff6100;
+    text-align: center;
+}
+.notebook-header h2 {
+    font-weight: bold;
+    word-wrap: break-word;
+    margin-top: 10px;
+}
+.notebook-label {
+    text-align: center;
+    background: #e5e5e5;
+}
+.notebook-settings button {
+    background: #f68827;
+    float: right;
+}
+.author {
+    margin: 0;
+}
+.forbidden {
+    margin-top: 75px;
+    text-align: center;
+}
+.notes-empty {
+    text-align: center;
+}
+.forbidden .sad-face {
+    font-weight: bold;
+    font-size: 50px;
+    transform: rotate(90deg);
+}
+.forbidden h2, .notes-empty h2 {
+    margin: 0;
+}
+.forbidden .message, .notes-empty .message {
+    margin-top: 50px;
+    color: #8c8c8c;
+}
