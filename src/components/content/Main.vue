@@ -14,7 +14,7 @@
         <div class="row note-list-content">
             <div class="col-md-12 col-md-offset-0 col-xs-10 col-xs-offset-1">
                 <ul v-if="notebooks.length > 0" class="list-unstyled list-inline">
-                    <li v-bind:data-id="notebook.id" v-for="notebook in this.notebooks" class="col-md-3 col-sm-3 col-xs-12">
+                    <li v-bind:data-id="notebook.id" v-for="notebook in notebooks" class="col-md-3 col-sm-3 col-xs-12">
                         <router-link :to="{ name: 'Notebook', params: { id: notebook.id }}">{{ notebook.name }}</router-link>
                     </li>
                 </ul>
@@ -38,9 +38,9 @@
 
     export default {
         name: 'Main',
-        data() {
-            return {
-                notebooks: []
+        computed: {
+            notebooks() {
+                return this.$store.state.notebooks;
             }
         },
         methods: {
@@ -48,7 +48,7 @@
                 this.$http.get('notebooks').then(response => {
                     if (response.body.success) {
                         if (response.body.notebooks.length > 0) {
-                            this.notebooks = response.body.notebooks;
+                            this.$store.state.notebooks = response.body.notebooks;
                         }
                     }
                 }, response => {

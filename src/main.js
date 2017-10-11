@@ -5,6 +5,7 @@ import vueResource from 'vue-resource'
 import pl from 'vee-validate/dist/locale/pl'
 import VeeValidate, { Validator } from 'vee-validate'
 import parameters from '../config/parameters.js'
+import { store } from './store'
 
 Validator.addLocale(pl);
 
@@ -30,6 +31,7 @@ Vue.use(require('@websanova/vue-auth'), {
 });
 
 new Vue({
+    store: store,
     el: '#app',
     router,
     template: '<App/>',

@@ -69,7 +69,7 @@
                     notebook: this.form
                 }).then(response => {
                     if (response.body.success) {
-                        this.$parent.notebooks.unshift(response.body.notebook[0]);
+                        this.$store.state.notebooks.unshift(response.body.notebook[0]);
                         $('.modal').modal('hide');
                         $('#notebookForm')[0].reset();
                     } else {

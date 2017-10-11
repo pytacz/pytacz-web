@@ -101,7 +101,7 @@
                     }
                 }).then(response => {
                     if (response.body.success) {
-                        this.$parent.notebook.name = response.body.result.name;
+                        this.$store.state.notebook.name = response.body.result.name;
                         $('.modal').modal('hide');
                     } else {
                         this.errorList = response.body.errors;
@@ -111,13 +111,13 @@
                 });
             },
             changePrivacy() {
-                this.$http.patch('notebooks/' + this.$parent.notebook.id, {
+                this.$http.patch('notebooks/' + this.$store.state.notebook.id, {
                     notebook: {
                         private: this.private
                     }
                 }).then(response => {
                     if (response.body.success) {
-                        this.$parent.notebook.private = response.body.result.private;
+                        this.$store.state.notebook.private = response.body.result.private;
                         $('.modal').modal('hide');
                     } else {
                         this.errorList = response.body.errors;
@@ -130,7 +130,7 @@
                 $('.delete-confirmation').slideToggle();
             },
             deleteNotebook() {
-                this.$http.delete('notebooks/' + this.$parent.notebook.id).then(response => {
+                this.$http.delete('notebooks/' + this.$store.state.notebook.id).then(response => {
                     if (response.body.success) {
                         $('.modal').modal('hide');
                         this.$router.push({ name: 'Main' });
@@ -145,8 +145,8 @@
         mounted: function() {
             const that = this;
             $('#notebookSettings').on('shown.bs.modal', function() {
-                that.name = that.$parent.notebook.name;
-                that.private = that.$parent.notebook.private;
+                that.name = that.$store.state.notebook.name;
+                that.private = that.$store.state.notebook.private;
             });
         }
     }

@@ -17,9 +17,9 @@
                                 <a href="#">Profil</a>
                                 <button class="nav-item btn-link" @click="logout">Wyloguj się</button>
                             </div>
-                            <div v-else>
-                                <button class="nav-item btn-link" data-toggle="modal" data-target="#loginPopupWindow" @click="login.error = false">Zaloguj się</button>
-                            </div>
+                            <span v-else>
+                                <button class="nav-item btn-link" data-toggle="modal" data-target="#loginPopupWindow">Zaloguj się</button>
+                            </span>
                         </div>
                     </div>
                 </div><!-- .navbar-collapse -->

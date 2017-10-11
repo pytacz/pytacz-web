@@ -282,10 +282,8 @@
     export default {
         data() {
             return {
-                notebook: {},
                 owner: '',
                 forbidden: false,
-                notes: [],
                 startPoint: '',
                 load: true,
                 addNote: {
@@ -324,6 +322,12 @@
             }
         },
         computed: {
+            notebook() {
+                return this.$store.state.notebook;
+            },
+            notes() {
+                return this.$store.state.notes;
+            },
             addNoteCharactersLeft() {
                 var chars = this.addNote.form.content.length;
 
@@ -349,7 +353,7 @@
             getNotebook() {
                 this.$http.get('notebooks/' + this.$route.params.id).then(response => {
                     if (response.body.success) {
-                        this.notebook = response.body.notebook[0];
+                        this.$store.state.notebook = response.body.notebook[0];
                         this.owner = response.body.user;
                     } else {
                         this.notebooks = null;
@@ -374,7 +378,7 @@
                     note: this.addNote.form
                 }).then(response => {
                     if (response.body.success) {
-                        this.notes.unshift(response.body.note[0]);
+                        this.$store.state.notes.unshift(response.body.note[0]);
                     } else {
                         this.addNote.errors = response.body.errors;
                     }
@@ -397,7 +401,7 @@
                     if (response.body.success) {
                         if (response.body.notes.length > 0) {
                             response.body.notes.forEach(note => {
-                                this.notes.push(note);
+                                this.$store.state.notes.push(note);
                             });
                         }
 
@@ -440,11 +444,12 @@
                     if (response.body.success) {
                         var result = response.body.result;
 
+                        var notes = this.$store.state.notes;
                         for (var i in this.notes) {
-                            if (this.notes[i].id === id) {
-                                this.notes[i].name = result.name;
-                                this.notes[i].content = result.content;
-                                this.notes[i].askable = result.askable;
+                            if (notes[i].id === id) {
+                                notes[i].name = result.name;
+                                notes[i].content = result.content;
+                                notes[i].askable = result.askable;
                             }
                         }
                         $(event.target).closest('li').find('.note-edition').hide();
@@ -460,7 +465,7 @@
             deleteNote(id) {
                 this.$http.delete('notes/' + id).then(response => {
                     if (response.body.success) {
-                        this.notes = this.notes.filter(function(note){
+                        this.$store.state.notes = this.notes.filter(function(note){
                             return note.id !== id;
                         });
                     } else {
@@ -478,7 +483,7 @@
                     if (response.body.success) {
                         for (var i in this.notes) {
                             if (this.notes[i].id === id) {
-                                this.notes[i].subNotes.push(response.body.sub_note[0]);
+                                this.$store.state.notes[i].subNotes.push(response.body.sub_note[0]);
                             }
                         }
                         $(event.target).closest('li').find('.sub-note-addition').hide();
@@ -524,13 +529,14 @@
                 }).then(response => {
                     if (response.body.success) {
                         var result = response.body.result;
+                        var notes = this.$store.state.notes;
                         for (var i in this.notes) {
                             if (this.notes[i].id === idNote) {
                                 for (var j in this.notes[i].subNotes) {
-                                    if (this.notes[i].subNotes[j].id === idSubNote) {
-                                        this.notes[i].subNotes[j].name = result.name;
-                                        this.notes[i].subNotes[j].content = result.content;
-                                        this.notes[i].subNotes[j].askable = result.askable;
+                                    if (notes[i].subNotes[j].id === idSubNote) {
+                                        notes[i].subNotes[j].name = result.name;
+                                        notes[i].subNotes[j].content = result.content;
+                                        notes[i].subNotes[j].askable = result.askable;
                                     }
                                 }
                             }

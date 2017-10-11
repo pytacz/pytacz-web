@@ -3,7 +3,7 @@
         <div class="login-header">
             <h1>Logowanie</h1>
         </div>
-        <form class="form" role="form">
+        <form class="form" @submit.prevent="login" role="form">
             <div class="row">
                 <div class="form-group col-md-12">
                     <input type="text" class="form-control" placeholder="Login" v-model="form._username">
@@ -25,7 +25,7 @@
             <transition name="fade">
                 <div class="alert alert-danger login-error" v-if="error">{{ errorMessage }}</div>
             </transition>
-            <button type="button" class="btn login-button" @click="login">Zaloguj się</button>
+            <button type="submit" class="btn login-button">Zaloguj się</button>
         </form>
         <p>
             <router-link to="/register">Nie mam konta</router-link>
@@ -52,9 +52,6 @@ export default {
                 body: this.form,
                 rememberMe: this.rememberMe,
                 fetchUser: true,
-                success() {
-                    location.reload();
-                },
                 error(res) {
                     this.error = true;
                     this.errorMessage = res.data.message;
