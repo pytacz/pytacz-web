@@ -19,6 +19,10 @@ export default new Router({
                     path: '/notebook/:id',
                     name: 'Notebook',
                     component: require('@/components/content/Notebook')
+                }, {
+                    path: '/notebook/:id/question',
+                    name: 'Question',
+                    component: require('@/components/content/Question')
                 }
             ]
         }, {

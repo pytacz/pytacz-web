@@ -14,6 +14,7 @@
             </div>
             <div v-show="$auth.user().username == owner" class="row">
                 <button @click="expandNoteAddition" class="btn btn-link">+ dodaj</button>
+                <button @click="redirectToQuestion" class="btn btn-link">przepytaj</button>
                 <div class="note-addition col-md-12">
                     <form class="form note-addition-form" @submit.prevent="createNote" role="form">
                         <div class="row">
@@ -69,7 +70,10 @@
                                     <div :data-id="note.id" class="col-md-12 note-container">
                                         <div class="row">
                                             <div class="col-md-3 col-sm-3 note-name">
-                                                <strong>{{ note.name }}</strong>
+                                                <div class="name-field">
+                                                    <strong>{{ note.name }}</strong>
+                                                </div>
+                                                <div class="dash hidden-xs visible-sm visible-md visible-lg">-</div>
                                             </div>
                                             <div class="col-md-9 col-sm-9 note-content">
                                                 {{ note.content }}
@@ -81,7 +85,7 @@
                                     <button @click="expandEditNote($event, note.id)" class="btn btn-link btn-xs display-edition">
                                         <img src="../../assets/icons/pencil.svg" class="display-edition-icon">
                                     </button>
-                                    <button @click="deleteNote(note.id)" class="btn btn-link btn-xs delete-note">
+                                    <button @click="deleteNote($event, note.id)" class="btn btn-link btn-xs delete-note">
                                         <img src="../../assets/icons/trashcan.svg" class="delete-note-icon">
                                     </button>
                                     <button @click="expandSubNoteAddition($event)" class="btn btn-link btn-xs display-sub-note-addition">
@@ -119,9 +123,9 @@
                                                     data-autoresize
                                                     placeholder="treść"></textarea>
                                             <div class="col-md-5 col-sm-5 col-xs-8">
-                                                <span class="pre-error" v-show="errors.has('content') || errors.has('name')">
+                                                <span class="pre-error" v-show="errors.has('content') || errors.has('editName')">
                                                     {{ errors.first('content') }}
-                                                    {{ errors.first('name') }}
+                                                    {{ errors.first('editName') }}
                                                 </span>
                                             </div>
                                             <div class="remaining-characters col-md-3 col-sm-3 col-xs-4">Pozostałe znaki: {{ editNoteCharactersLeft }}</div>
@@ -183,9 +187,12 @@
 
                                             <div class="row">
                                                 <div :data-id="subNote.id" class="sub-note-container">
-                                                    <div class=" col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-11 col-xs-offset-1 note-name">
+                                                    <div class=" col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-10 col-xs-offset-1 note-name">
                                                         <div class="bullet-point"></div>
-                                                        <strong>{{ subNote.name }}</strong>
+                                                        <div class="name-field">
+                                                            <strong>{{ subNote.name }}</strong>
+                                                        </div>
+                                                        <div class="dash hidden-xs visible-sm visible-md visible-lg">-</div>
                                                     </div>
                                                     <div class="col-md-7 col-md-offset-0 col-sm-7 col-sm-offset-0 col-xs-11 col-xs-offset-1 note-content">
                                                         {{ subNote.content }}
@@ -285,6 +292,7 @@
                 owner: '',
                 forbidden: false,
                 startPoint: '',
+                notes: [],
                 load: true,
                 addNote: {
                     form: {
@@ -324,9 +332,6 @@
         computed: {
             notebook() {
                 return this.$store.state.notebook;
-            },
-            notes() {
-                return this.$store.state.notes;
             },
             addNoteCharactersLeft() {
                 var chars = this.addNote.form.content.length;
@@ -378,7 +383,7 @@
                     note: this.addNote.form
                 }).then(response => {
                     if (response.body.success) {
-                        this.$store.state.notes.unshift(response.body.note[0]);
+                        this.notes.unshift(response.body.note[0]);
                     } else {
                         this.addNote.errors = response.body.errors;
                     }
@@ -401,7 +406,7 @@
                     if (response.body.success) {
                         if (response.body.notes.length > 0) {
                             response.body.notes.forEach(note => {
-                                this.$store.state.notes.push(note);
+                                this.notes.push(note);
                             });
                         }
 
@@ -444,7 +449,7 @@
                     if (response.body.success) {
                         var result = response.body.result;
 
-                        var notes = this.$store.state.notes;
+                        var notes = this.notes;
                         for (var i in this.notes) {
                             if (notes[i].id === id) {
                                 notes[i].name = result.name;
@@ -462,12 +467,14 @@
                     alert('Wystąpił błąd');
                 });
             },
-            deleteNote(id) {
+            deleteNote(event, id) {
                 this.$http.delete('notes/' + id).then(response => {
                     if (response.body.success) {
-                        this.$store.state.notes = this.notes.filter(function(note){
+                        this.notes = this.notes.filter(function(note){
                             return note.id !== id;
                         });
+                        $(event.target).closest('li').find('.note-edition').hide();
+                        $(event.target).closest('li').find('.note-container').show();
                     } else {
                         alert('Wystąpił błąd');
                     }
@@ -483,7 +490,7 @@
                     if (response.body.success) {
                         for (var i in this.notes) {
                             if (this.notes[i].id === id) {
-                                this.$store.state.notes[i].subNotes.push(response.body.sub_note[0]);
+                                this.notes[i].subNotes.push(response.body.sub_note[0]);
                             }
                         }
                         $(event.target).closest('li').find('.sub-note-addition').hide();
@@ -529,7 +536,7 @@
                 }).then(response => {
                     if (response.body.success) {
                         var result = response.body.result;
-                        var notes = this.$store.state.notes;
+                        var notes = this.notes;
                         for (var i in this.notes) {
                             if (this.notes[i].id === idNote) {
                                 for (var j in this.notes[i].subNotes) {
@@ -569,6 +576,10 @@
                 }, response => {
                     alert('Wystąpił błąd');
                 });
+            },
+            redirectToQuestion() {
+                localStorage.setItem('notebooks', JSON.stringify([this.$route.params.id]));
+                this.$router.push({name: 'Question', params: {id: this.$route.params.id}});
             }
         },
         beforeMount() {
@@ -593,3 +604,4 @@
 <style src="../../css/notebook/scheme.css" scoped></style>
 <style src="../../css/notebook/notes.css" scoped></style>
 <style src="../../css/notebook/icons.css" scoped></style>
+<style src="../../css/notebook/list.css" scoped></style>

@@ -52,14 +52,6 @@
     display: none;
     margin-top: 15px;
 }
-.bullet-point {
-    display: list-item;
-    list-style-type: disc;
-    list-style-position: inside;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
 @media (max-width: 767px) {
     textarea {
         background: #f1f1f1;
