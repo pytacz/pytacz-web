@@ -6,7 +6,7 @@
         <form class="form" @submit.prevent="login" role="form">
             <div class="row">
                 <div class="form-group col-md-12">
-                    <input type="text" class="form-control" placeholder="Login" v-model="form._username">
+                    <input type="email" class="form-control" placeholder="Login" v-model="form._email">
                 </div>
             </div>
             <div class="row">
@@ -38,7 +38,7 @@ export default {
     data() {
         return {
             form: {
-                _username: '',
+                _email: '',
                 _password: ''
             },
             rememberMe: false,

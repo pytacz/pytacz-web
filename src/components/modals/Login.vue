@@ -10,7 +10,7 @@
                     <form class="form pop-up-login" @submit.prevent="loginAction" role="form">
                         <div class="row">
                             <div class="form-group col-md-10 col-md-offset-1">
-                                <input type="text" class="form-control" placeholder="Login" v-model="login.form._username">
+                                <input type="email" class="form-control" placeholder="Email" v-model="login.form._email">
                             </div>
                             <div class="form-group col-md-10 col-md-offset-1">
                                 <input type="password" class="form-control" placeholder="Hasło" v-model="login.form._password">
@@ -24,10 +24,10 @@
                             </div>
                         </div>
                         <div class="row pop-up-login-footer">
-                            <label for="rememberMe" class="col-xs-4 col-sm-3 col-md-3 col-md-offset-1">
+                            <label for="rememberMe" class="col-xs-4 col-sm-4 col-md-4 col-md-offset-1">
                                 <input type="checkbox" id="rememberMe" v-model="login.rememberMe"> Pamiętaj mnie
                             </label>
-                            <button type="submit" class="btn col-xs-4 col-xs-offset-4 col-sm-3 col-sm-offset-6 col-md-2 col-md-offset-5">Zaloguj się</button>
+                            <button type="submit" class="btn col-xs-4 col-xs-offset-4 col-sm-3 col-sm-offset-5 col-md-3 col-md-offset-3">Zaloguj się</button>
                         </div>
                         <div class="row">
                             <a href="#" class="col-md-offset-1 col-md-3">Przypomnij hasło</a>
@@ -45,7 +45,7 @@
             return {
                 login: {
                     form: {
-                        _username: '',
+                        _email: '',
                         _password: ''
                     },
                     rememberMe: false,

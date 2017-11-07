@@ -49,6 +49,7 @@
     <div v-show="!$auth.check()">
         <login-modal></login-modal>
     </div>
+    <vue-progress-bar></vue-progress-bar>
 </div>
 </template>
 
@@ -66,10 +67,55 @@
         },
         components: {
             LoginModal
+        },
+        mounted() {
+            //  [App.vue specific] When App.vue is finish loading finish the progress bar
+            this.$Progress.finish();
+        },
+        created() {
+            //  [App.vue specific] When App.vue is first loaded start the progress bar
+            this.$Progress.start();
+            //  hook the progress bar to start before we move router-view
+            this.$router.beforeEach((to, from, next) => {
+                //  does the page we want to go to have a meta.progress object
+                if (to.meta.progress !== undefined) {
+                    let meta = to.meta.progress;
+                    // parse meta tags
+                    this.$Progress.parseMeta(meta);
+                }
+                //  start the progress bar
+                this.$Progress.start();
+                //  continue to next page
+                next()
+            });
+            //  hook the progress bar to finish after we've finished moving router-view
+            this.$router.afterEach((to, from) => {
+                //  finish the progress bar
+                this.$Progress.finish();
+            });
+
+            let authReady = this.$auth.ready();
+
+            if (!authReady) {
+                let seconds = 8;
+
+                setInterval(function () {
+                    if (!authReady) {
+                        seconds--;
+                    }
+                    if (seconds <= 0) {
+                        clearInterval(t);
+                        localStorage.clear();
+                        sessionStorage.clear();
+                        location.reload();
+                    }
+                }, 1000);
+            }
         }
     }
 </script>
 <style src="./css/main/content.css"></style>
 <style src="./css/main/navbar.css"></style>
 <style src="./css/main/footer.css"></style>
-<style src="./css/main/login-modal.css"></style>
+<style src="./css/modals/login.css"></style>
+<style src="./css/main/loader.css"></style>
